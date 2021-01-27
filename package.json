@@ -1,0 +1,21 @@
+{
+  "name": "url-encurter",
+  "version": "1.0.0",
+  "description": "Aplicação para encurtar URLs",
+  "main": "src/init.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/init.js"
+  },
+  "author": "Lucas Tavares",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.3.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "perma": "^2.0.1",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.5.0"
+  }
+}
