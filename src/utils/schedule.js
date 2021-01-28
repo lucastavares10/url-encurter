@@ -1,12 +1,43 @@
-const config = require('config');
-let liveTime = 60000; // 900000 = 15 minutos, 60000 = 1 minuto
+const ShortcutModel = require("../app/encurter/encurter-model");
+const CronJob = require("cron").CronJob;
+const config = require("config");
+const timezone = config.get("timezone");
 
-setInterval(async function () {
+const clear = new CronJob(
+  "00 00 00 * * *",
+  async function () {
     try {
-        console.log(`Encurter server still running on port ${config.get('port')} \n ${new Date()}`);
-    } catch (error) {
-        log.error('** Erro na schedule do encurter **');
-        log.error(`** Erro: ${error} **`);
-    }
+      console.log("Checking expired links every 00:00:00");
+      await ShortcutModel.findAll().then((res) => {
+        res.forEach((el) => {
+          const dateLink = new Date(el.dataValues.createdAt);
+          const dateNow = new Date();
 
-}, liveTime);
+          if (dateNow - dateLink > 172800000) {
+            //172800000 === 48 hour
+            async function deleteShortcut() {
+              try {
+                await ShortcutModel.destroy({
+                  where: {
+                    id: el.dataValues.id,
+                  },
+                });
+              } catch (error) {
+                console.log(error);
+              }
+            }
+
+            deleteShortcut();
+          }
+        });
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  null,
+  true,
+  timezone
+);
+
+clear.start();

@@ -1,6 +1,7 @@
 {
     "port": 4105,
     "url-encurter-host": "localhost",
+    "timezone": "America/Sao_Paulo",
     "postgres": {
         "host": "localhost",
         "database": "url-encurter",

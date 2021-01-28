@@ -15,6 +15,7 @@ sequelize
     console.log(`** ${error} **`);
   });
 
+sequelize.sync();
 //sequelize.sync({ force: true });
 
 module.exports = sequelize;

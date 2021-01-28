@@ -1,10 +1,11 @@
 {
-    "port": 4105,
-    "url-encurter-host": "localhost",
-    "postgres": {
-        "host": "localhost",
-        "database": "url-encurter",
-        "username": "postgres",
-        "password": "postgres"
-    }
+  "port": 4105,
+  "url-encurter-host": "localhost",
+  "timezone": "America/Sao_Paulo",
+  "postgres": {
+      "host": "localhost",
+      "database": "url-encurter",
+      "username": "postgres",
+      "password": "postgres"
+  }
 }
